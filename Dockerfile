@@ -10,7 +10,7 @@ CMD ./gradlew run
 
 
 FROM base AS test
-ENTRYPOINT ./gradlew test
+CMD ./gradlew test
 
 #FROM openjdk:17-alpine
 
