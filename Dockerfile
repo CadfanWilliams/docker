@@ -1,4 +1,4 @@
-FROM gradle:7.5.1
+FROM gradle:8.10.1
 
 WORKDIR /app
 COPY . .

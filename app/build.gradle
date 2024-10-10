@@ -37,5 +37,9 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = 'org.example.App'
+    mainClass = 'tabletennistable.Main'
+}
+
+run {
+    standardInput = System.in
 }
