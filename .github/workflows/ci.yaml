@@ -5,5 +5,4 @@ jobs:
     name: Build and test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v 2
       - run: echo Hello World
