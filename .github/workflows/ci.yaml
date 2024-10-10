@@ -5,5 +5,5 @@ jobs:
     name: Build and test
     runs-on: ubuntu-latest
     steps:
-      - run: docker build --tag table-tennis-table .
+      - run: docker build --tag table-tennis-table --target test .
       - run: docker run table-tenis-table
