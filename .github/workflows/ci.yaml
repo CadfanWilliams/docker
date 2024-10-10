@@ -5,4 +5,5 @@ jobs:
     name: Build and test
     runs-on: ubuntu-latest
     steps:
-      - run: echo Hello World
+      - run: docker build --tag table-tennis-table .
+      - run: docker run table-tenis-table

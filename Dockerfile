@@ -1,4 +1,4 @@
-FROM gradle:8.10.1
+FROM gradle:8.10.1 AS base
 
 WORKDIR /app
 COPY . .
@@ -7,6 +7,11 @@ COPY . .
 RUN ./gradlew install
 
 CMD ./gradlew run
+
+
+FROM base AS test
+ENTRYPOINT ./gradlew test
+
 #FROM openjdk:17-alpine
 
 #WORKDIR /app
