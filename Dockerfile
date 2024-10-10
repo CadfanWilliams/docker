@@ -6,7 +6,7 @@ COPY . .
 # Build the application
 RUN ./gradlew install
 
-CMD ./gradlew run
+#CMD ./gradlew run
 
 
 FROM base AS test
