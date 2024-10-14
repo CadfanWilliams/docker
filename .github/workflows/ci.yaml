@@ -1,12 +1,45 @@
-name: Continuous Integration
-on: [push]
+name: Continuous integration
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    paths-ignore:
+      - 'README.md'
+    branches: [ "main" ]
 jobs:
   build:
     name: Build and test
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
-      - run: docker build --tag table-tennis-table --target test .
-      - run: docker run table-tenis-table --target test
-      - run: ./gradlew test
+      - uses: actions/checkout@v4
+      - name: Checkout
+        run: |
+          echo checkout
+
+      - name: Java version
+        run: |
+          java -version
+
+      - name: Build docker image test
+        run : |
+          docker build --target test --tag image:test .
+
+      - name: Run tests
+        if: success()
+        run : |
+          docker run image:test
+
+      - name: Build production image
+        run: |
+          docker build --target prod --tag image:prod .
+
+      - name: Login to Docker
+        run: |
+          docker login -u $username -p $password
+        env:
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.TOKEN }}
+
+      - name: Push image to artifactory
+        run: |
+          docker push image:prod
