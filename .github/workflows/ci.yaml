@@ -29,17 +29,17 @@ jobs:
         run : |
           docker run image:test
 
-      - name: Build production image
-        run: |
-          docker build --target prod --tag image:prod .
-
-      - name: Login to Docker
-        run: |
-          docker login -u $username -p $password
-        env:
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.TOKEN }}
-
-      - name: Push image to artifactory
-        run: |
-          docker push image:prod
+#      - name: Build production image
+#        run: |
+#          docker build --target prod --tag image:prod .
+#
+#      - name: Login to Docker
+#        run: |
+#          docker login -u $username -p $password
+#        env:
+#          username: ${{ secrets.USERNAME }}
+#          password: ${{ secrets.TOKEN }}
+#
+#      - name: Push image to artifactory
+#        run: |
+#          docker push image:prod
