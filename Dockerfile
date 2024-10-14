@@ -4,18 +4,11 @@ WORKDIR /app
 COPY . .
 
 # Build the application
-RUN ./gradlew install
 
-#CMD ./gradlew run
+CMD ./gradlew run
 
+FROM base AS prod
+ENTRYPOINT ./gradlew run --console=plain
 
 FROM base AS test
-CMD ./gradlew test
-
-#FROM openjdk:17-alpine
-
-#WORKDIR /app
-#COPY --from=build /app/build/libs/*.jar app.jar
-
-#EXPOSE 8080
-#CMD ["java", "-jar", "app.jar"]
+ENTRYPOINT ./gradlew test --console=plain
